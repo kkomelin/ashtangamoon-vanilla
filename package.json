@@ -1,0 +1,17 @@
+{
+  "name": "lunar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^2.15.0",
+    "date-fns-tz": "^1.0.10",
+    "suncalc": "^1.8.0"
+  }
+}
