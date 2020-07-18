@@ -31,8 +31,6 @@ const calculateNextNewAndFull = () => {
       date: format(date, "yyyy-MM-dd HH:mm", { timeZone })
     });
   }
-  
-  console.log(moonPhases.length);
 
   const newMoon = moonPhases.reduce((prev, current) => 
     (prev.phase < current.phase && isAboutNewMoon(prev.phase)) ? prev : current
