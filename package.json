@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
   },
   "keywords": [],
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
@@ -12,6 +13,7 @@
   "dependencies": {
     "date-fns": "^2.15.0",
     "date-fns-tz": "^1.0.10",
+    "restify": "^8.5.1",
     "suncalc": "^1.8.0"
   }
 }
