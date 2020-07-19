@@ -1,7 +1,6 @@
-const sunCalc = require('suncalc');
-const addMinutes = require('date-fns/addMinutes');
-// const format = require('date-fns/format');
-const { format } = require('date-fns-tz');
+import { addMinutes, format } from 'date-fns';
+import sunCalc from 'suncalc';
+// const { format } = require('date-fns-tz');
 
 const timeZone = 'Europe/Moscow';
 const numberOfDays = 31;
@@ -14,12 +13,17 @@ const isAboutFullMoon = (phase) => {
   return phase >= 0.49 && phase <= 0.51;
 }
 
-const calculateNextNewAndFull = () => {
+const getMoonPhase = (date) => {
+  const { phase } = sunCalc.getMoonIllumination(date);
+  return phase;
+}
+
+const moonPhases = () => {
   const moonPhases = [];
   for(let i = 0; i < numberOfDays * 24 * 60; i++) {
     const date = addMinutes(currentDate, i);
   
-    const { phase } = sunCalc.getMoonIllumination(date);
+    const phase = getMoonPhase(date);
 
     // Ignore the phase, if it's not close to new or full moon.
     if (!isAboutNewMoon(phase) && !isAboutFullMoon(phase)) {
@@ -42,12 +46,13 @@ const calculateNextNewAndFull = () => {
       return (prev.phase > current.phase) ? prev : current;
     });
 
+  const currentPhase = getMoonPhase(currentDate);
+
   return {
+    currentPhase,
     new: newMoon.date,
     full: fullMoon.date
   }
 }
 
-module.exports = {
-  calculateNextNewAndFull
-}
+export default moonPhases;

@@ -1,10 +1,10 @@
 'use strict';
 
 const restify = require('restify');
-const { calculateNextNewAndFull } = require('./moonPhases');
+const { moonPhases } = require('./src/moonPhases');
 
 function respond(req, res, next) {
-  const result = calculateNextNewAndFull(); 
+  const result = moonPhases(); 
 
   res.send(result);
   next();
