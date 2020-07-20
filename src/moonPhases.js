@@ -1,4 +1,4 @@
-import { addMinutes, format } from 'date-fns';
+import { addMinutes } from 'date-fns';
 import sunCalc from 'suncalc';
 // const { format } = require('date-fns-tz');
 
@@ -32,7 +32,7 @@ const moonPhases = () => {
 
     moonPhases.push({
       phase, 
-      date: format(date, "yyyy-MM-dd HH:mm", { timeZone })
+      date
     });
   }
 
@@ -50,8 +50,8 @@ const moonPhases = () => {
 
   return {
     currentPhase,
-    new: newMoon.date,
-    full: fullMoon.date
+    newMoon: newMoon.date,
+    fullMoon: fullMoon.date
   }
 }
 
