@@ -55,7 +55,7 @@ function calculateParams(radius, phase) {
 }
 
 function renderRoot(width, height, radius) {
-  const root = d3.select("#root");
+  const root = d3.select("#moon");
 
   const mask = root
     .append("defs")
@@ -66,7 +66,8 @@ function renderRoot(width, height, radius) {
   mask.append("circle")
     .attr("cx", width / 2)
     .attr("cy", height / 2)
-    .attr("r", radius);
+    .attr("r", radius)
+    .attr('shape-rendering', "geometricPrecision");
 
   return root
     .attr("width", width)
@@ -85,7 +86,8 @@ function renderMoon(root, id, x, y, radius, shape, color) {
       .attr("y", y - radius)
       .attr("width", radius * 2)
       .attr("height", radius * 2)
-      .style("fill", color);
+      .style("fill", color)
+      .attr('shape-rendering', "geometricPrecision");;
   }
 
   root
@@ -94,7 +96,8 @@ function renderMoon(root, id, x, y, radius, shape, color) {
     .attr("cx", x)
     .attr("cy", y)
     .attr("r", radius)
-    .style("fill", color);
+    .style("fill", color)
+    .attr('shape-rendering', "geometricPrecision");
 }
 
 function draw(phase) {
