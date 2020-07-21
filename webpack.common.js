@@ -3,15 +3,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distDir = path.resolve(__dirname, 'dist');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: {
     app: './src/index.js',
-  },
-  optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -22,7 +17,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Next Moon Phase',
       template: 'template.html'
-    }),
+    })
   ],
   output: {
     filename: '[name].bundle.js',
