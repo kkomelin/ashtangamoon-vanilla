@@ -1,6 +1,7 @@
 import format from 'date-fns/format';
 import draw from './moon';
 import moonPhases from './moonPhases';
+import './styles.css';
 
 const body = document.querySelector('body');
 
