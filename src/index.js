@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
-import visualizeMoonPhase from './visualizeMoonPhase';
 import calculateMoonPhases from './calculateMoonPhases';
 import './styles.css';
+import visualizeMoonPhase from './visualizeMoonPhase';
 
 const body = document.querySelector('body');
 

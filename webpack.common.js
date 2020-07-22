@@ -1,5 +1,5 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distDir = path.resolve(__dirname, 'dist');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -13,9 +13,11 @@ module.exports = {
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: true
+    }),
     new HtmlWebpackPlugin({
-      title: 'Next Moon Peak',
+      title: 'Moon Peaks',
       template: 'template.html'
     })
   ],
