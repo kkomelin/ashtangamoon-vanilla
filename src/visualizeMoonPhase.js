@@ -1,51 +1,41 @@
-import * as d3 from 'd3';
+import * as d3 from "d3";
 
-const lightColor = '#ffffff';
-const darkColor = '#466380';
+const lightColor = "#ffffff";
+const darkColor = "#466380";
 
 function calculateParams(radius, phase) {
-  // 0	New Moon = all black
-  // 0.25	First Quarter
-  // 0.5	Full Moon = all white
-  // 0.75	Last Quarter
-
   const params = {
     first: {
       x: 0,
-      shape: 'circle',
-      color: lightColor
+      shape: "circle",
+      color: lightColor,
     },
     second: {
       x: 0,
-      shape: 'circle',
-      color: darkColor
-    }
-  }
+      shape: "circle",
+      color: darkColor,
+    },
+  };
 
   if (phase >= 0 && phase < 0.245) {
-    params.second.x = - (radius * 2 * phase) * 1.5;
-  } 
-  else if (phase >= 0.245 && phase < 0.255) {
-    params.second.shape = 'rect';
+    params.second.x = -(radius * 2 * phase) * 1.5;
+  } else if (phase >= 0.245 && phase < 0.255) {
+    params.second.shape = "rect";
     params.second.x = -radius;
-  }
-  else if (phase >= 0.255 && phase <= 0.5) {
+  } else if (phase >= 0.255 && phase <= 0.5) {
     params.first.color = darkColor;
     params.second.color = lightColor;
     params.second.x = radius * 2 * (1 - phase) - radius;
-  }
-  else if (phase > 0.5 && phase < 0.745) {
+  } else if (phase > 0.5 && phase < 0.745) {
     params.first.color = darkColor;
     params.second.color = lightColor;
-    params.second.x = - radius * 2 * phase + radius;
-  }
-  else if (phase >= 0.745 && phase < 0.755) {
+    params.second.x = -radius * 2 * phase + radius;
+  } else if (phase >= 0.745 && phase < 0.755) {
     params.first.color = darkColor;
     params.second.color = lightColor;
-    params.second.shape = 'rect';
+    params.second.shape = "rect";
     params.second.x = -radius;
-  }
-  else if (phase >= 0.755 && phase <= 1) {
+  } else if (phase >= 0.755 && phase <= 1) {
     params.first.color = lightColor;
     params.second.color = darkColor;
     params.second.x = radius * 2 * (1 - phase);
@@ -63,11 +53,12 @@ function renderRoot(width, height, radius) {
     .attr("clipPathUnits", "userSpaceOnUse")
     .attr("id", "hole");
 
-  mask.append("circle")
+  mask
+    .append("circle")
     .attr("cx", width / 2)
     .attr("cy", height / 2)
     .attr("r", radius)
-    .attr('shape-rendering', "geometricPrecision");
+    .attr("shape-rendering", "geometricPrecision");
 
   return root
     .attr("width", width)
@@ -78,7 +69,7 @@ function renderRoot(width, height, radius) {
 }
 
 function renderMoon(root, id, x, y, radius, shape, color) {
-  if (shape === 'rect') {
+  if (shape === "rect") {
     return root
       .append("rect")
       .attr("id", "moon" + id)
@@ -87,7 +78,7 @@ function renderMoon(root, id, x, y, radius, shape, color) {
       .attr("width", radius * 2)
       .attr("height", radius * 2)
       .style("fill", color)
-      .attr('shape-rendering', "geometricPrecision");;
+      .attr("shape-rendering", "geometricPrecision");
   }
 
   root
@@ -97,10 +88,10 @@ function renderMoon(root, id, x, y, radius, shape, color) {
     .attr("cy", y)
     .attr("r", radius)
     .style("fill", color)
-    .attr('shape-rendering', "geometricPrecision");
+    .attr("shape-rendering", "geometricPrecision");
 }
 
-function draw(phase) {
+function visualizeMoonPhase(phase) {
   const width = 300;
   const height = 300;
   const radius = 50;
@@ -111,8 +102,24 @@ function draw(phase) {
 
   const root = renderRoot(width, height, radius);
 
-  renderMoon(root, 1, initX + params.first.x, initY, radius, params.first.shape, params.first.color);
-  renderMoon(root, 2, initX + params.second.x, initY, radius, params.second.shape, params.second.color);
-};
+  renderMoon(
+    root,
+    1,
+    initX + params.first.x,
+    initY,
+    radius,
+    params.first.shape,
+    params.first.color
+  );
+  renderMoon(
+    root,
+    2,
+    initX + params.second.x,
+    initY,
+    radius,
+    params.second.shape,
+    params.second.color
+  );
+}
 
-export default draw;
+export default visualizeMoonPhase;

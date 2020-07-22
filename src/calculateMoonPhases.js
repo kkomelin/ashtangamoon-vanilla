@@ -1,8 +1,6 @@
 import { addMinutes } from 'date-fns';
 import sunCalc from 'suncalc';
-// const { format } = require('date-fns-tz');
 
-const timeZone = 'Europe/Moscow';
 const numberOfDays = 31;
 const currentDate = new Date();
 
@@ -18,7 +16,7 @@ const getMoonPhase = (date) => {
   return phase;
 }
 
-const moonPhases = () => {
+const calculateMoonPhases = () => {
   const moonPhases = [];
   for(let i = 0; i < numberOfDays * 24 * 60; i++) {
     const date = addMinutes(currentDate, i);
@@ -55,4 +53,4 @@ const moonPhases = () => {
   }
 }
 
-export default moonPhases;
+export default calculateMoonPhases;

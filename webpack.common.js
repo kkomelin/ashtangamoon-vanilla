@@ -15,7 +15,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Next Moon Phase',
+      title: 'Next Moon Peak',
       template: 'template.html'
     })
   ],

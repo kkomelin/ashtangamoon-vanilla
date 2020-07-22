@@ -1,31 +1,23 @@
-html, body {
-  margin:0;
-  padding:0;
-  background: #193d61;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-}
+/* Main styles */
 
 #moon {
   clear: both;
   background: #193d61;
 }
-.caption-title {
-  color: #dddddd;
-  font-weight: bold;
+
+.next-dates {
+  color: #ffffff;
 }
-.new-moon-caption, .full-moon-caption {
+
+.next-dates .new-moon, 
+.next-dates .full-moon {
   text-align: center;
   margin-bottom: 0.8rem;
 }
 
-.next-dates {
+.next-dates .new-moon .title, 
+.next-dates .full-moon .title {
+  font-size: 18px;
   color: #ffffff;
+  font-weight: bold;
 }
