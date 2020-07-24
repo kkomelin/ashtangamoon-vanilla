@@ -5,6 +5,8 @@ const distDir = path.resolve(__dirname, 'dist');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
+const isDevEnv = () => process.env.NODE_ENV === 'development';
+
 module.exports = {
   entry: {
     app: './src/index.js',
@@ -15,7 +17,7 @@ module.exports = {
       chunkFilename: '[id].[contenthash].css',
     }),
     new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: true
+      dry: isDevEnv()
     }),
     new HtmlWebpackPlugin({
       title: 'Moon Peaks',
@@ -46,7 +48,7 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               // only enable hot in development
-              hmr: process.env.NODE_ENV === 'development',
+              hmr: isDevEnv(),
               // if hmr does not work, this is a forceful method.
               // reloadAll: true,
             },
