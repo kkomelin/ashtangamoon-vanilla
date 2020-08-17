@@ -8,7 +8,7 @@ const isAboutNewMoon = (phase) => {
   return Math.round(phase) === 0;
 }
 const isAboutFullMoon = (phase) => {
-  return phase >= 0.49 && phase <= 0.51;
+  return phase >= 0.485 && phase <= 0.51;
 }
 
 const getMoonPhase = (date) => {
@@ -18,7 +18,7 @@ const getMoonPhase = (date) => {
 
 const calculateMoonPhases = () => {
   const moonPhases = [];
-  for(let i = 0; i < numberOfDays * 24 * 60; i++) {
+  for(let i = 0; i < numberOfDays * 24 * 60; i = i + 2) {
     const date = addMinutes(currentDate, i);
   
     const phase = getMoonPhase(date);
@@ -37,7 +37,7 @@ const calculateMoonPhases = () => {
   const newMoon = moonPhases.reduce((prev, current) => 
     (prev.phase < current.phase && isAboutNewMoon(prev.phase)) ? prev : current
   );
-  
+
   const fullMoon = moonPhases
     .filter(item => isAboutFullMoon(item.phase))
     .reduce((prev, current) => {
