@@ -7,11 +7,18 @@ const body = document.querySelector('body');
 
 // When body is ready, we caclulate and visualize moon phases.
 body.onload = function() {
+  // Print current date.
+  const moon = body.querySelector('header');
+  const currentEl = document.createElement('div');
+  currentEl.classList.add('current-date');
+  currentEl.innerText = `${format(new Date(), 'd MMM yyyy')}`;
+  moon.append(currentEl);
+
+  // Calculate moon phases.
   const {currentPhase, newMoon, fullMoon} = calculateMoonPhases();
 
-  const loader = body.querySelector('.loader');
-  // The phases have been calculated. Time to hide the loader.
-  loader.classList.add('hidden');
+  // The phases have been calculated. Time to remove the loader.
+  body.querySelector('.loader').remove();
 
   // Visualize the moon.
   visualizeMoonPhase(currentPhase);

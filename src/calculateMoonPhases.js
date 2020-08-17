@@ -1,5 +1,5 @@
 import { addMinutes } from 'date-fns';
-import sunCalc from 'suncalc';
+import { getMoonIllumination } from 'suncalc';
 
 const numberOfDays = 31;
 const currentDate = new Date();
@@ -11,17 +11,12 @@ const isAboutFullMoon = (phase) => {
   return phase >= 0.485 && phase <= 0.51;
 }
 
-const getMoonPhase = (date) => {
-  const { phase } = sunCalc.getMoonIllumination(date);
-  return phase;
-}
-
 const calculateMoonPhases = () => {
   const moonPhases = [];
   for(let i = 0; i < numberOfDays * 24 * 60; i = i + 2) {
     const date = addMinutes(currentDate, i);
   
-    const phase = getMoonPhase(date);
+    const { phase } = getMoonIllumination(date);
 
     // Ignore the phase, if it's not close to new or full moon.
     if (!isAboutNewMoon(phase) && !isAboutFullMoon(phase)) {
@@ -44,10 +39,10 @@ const calculateMoonPhases = () => {
       return (prev.phase > current.phase) ? prev : current;
     });
 
-  const currentPhase = getMoonPhase(currentDate);
+  const { phase } = getMoonIllumination(currentDate);
 
   return {
-    currentPhase,
+    currentPhase: phase,
     newMoon: newMoon.date,
     fullMoon: fullMoon.date
   }

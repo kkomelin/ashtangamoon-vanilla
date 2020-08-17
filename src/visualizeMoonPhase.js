@@ -93,7 +93,7 @@ function renderMoon(root, id, x, y, radius, shape, color) {
 
 function visualizeMoonPhase(phase) {
   const width = 300;
-  const height = 300;
+  const height = 100;
   const radius = 50;
   const initX = width / 2;
   const initY = height / 2;

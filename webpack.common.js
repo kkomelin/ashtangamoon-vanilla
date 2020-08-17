@@ -3,6 +3,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const distDir = path.resolve(__dirname, 'dist');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isDevEnv = () => process.env.NODE_ENV === 'development';
 
@@ -21,7 +22,18 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Moon Peaks',
       template: 'template.html'
-    })
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/img/apple-touch-icon.png'},
+        { from: 'src/img/favicon.ico' },
+        { from: 'src/img/favicon-16x16.png' },
+        { from: 'src/img/favicon-32x32.png' },
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
   ],
   output: {
     filename: '[name].bundle.js',
