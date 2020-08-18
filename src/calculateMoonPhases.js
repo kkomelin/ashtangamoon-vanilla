@@ -3,6 +3,7 @@ import { getMoonIllumination } from 'suncalc';
 
 const numberOfDays = 31;
 const currentDate = new Date();
+const step = 2; // minutes
 
 const isAboutNewMoon = (phase) => {
   return Math.round(phase) === 0;
@@ -13,7 +14,7 @@ const isAboutFullMoon = (phase) => {
 
 const calculateMoonPhases = () => {
   const moonPhases = [];
-  for(let i = 0; i < numberOfDays * 24 * 60; i = i + 2) {
+  for (let i = 0; i < numberOfDays * 24 * 60; i = i + step) {
     const date = addMinutes(currentDate, i);
   
     const { phase } = getMoonIllumination(date);
@@ -29,15 +30,17 @@ const calculateMoonPhases = () => {
     });
   }
 
-  const newMoon = moonPhases.reduce((prev, current) => 
-    (prev.phase < current.phase && isAboutNewMoon(prev.phase)) ? prev : current
-  );
+  let newMoon = moonPhases[0];
+  let fullMoon = moonPhases[0];
+  for (let i = 0; i < moonPhases.length; i++) {
+    if (newMoon.phase >= moonPhases[i].phase) {
+      newMoon = moonPhases[i];
+    }
 
-  const fullMoon = moonPhases
-    .filter(item => isAboutFullMoon(item.phase))
-    .reduce((prev, current) => {
-      return (prev.phase > current.phase) ? prev : current;
-    });
+    if (fullMoon.phase <= moonPhases[i].phase) {
+      fullMoon = moonPhases[i];
+    }
+  }
 
   const { phase } = getMoonIllumination(currentDate);
 
