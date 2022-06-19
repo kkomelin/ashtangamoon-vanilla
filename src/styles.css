@@ -16,16 +16,14 @@
   margin-bottom: 1rem;;
 }
 
-.next-dates .new-moon, 
-.next-dates .full-moon {
+.next-dates .moon-phase {
   text-align: center;
   margin-bottom: 0.8rem;
   color: #9de7fa;
   font-weight: bold;
 }
 
-.next-dates .new-moon .title, 
-.next-dates .full-moon .title {
+.next-dates .moon-phase .title {
   font-size: 18px;
   color: #ffffff;
   font-weight: normal;

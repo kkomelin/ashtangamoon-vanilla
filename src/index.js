@@ -5,46 +5,59 @@ import visualizeMoonPhase from './visualizeMoonPhase';
 
 const body = document.querySelector('body');
 
+const renderDate = (title, date) => {
+  const dateElement = document.createElement("div");
+  dateElement.classList.add("moon-phase");
+  dateElement.innerHTML = `<div class="title">${title}</div>
+    <div class="date">${format(date, "MMM, d - HH:mm")}</div>`;
+
+  return dateElement;
+};
+
 // When body is ready, we caclulate and visualize moon phases.
-body.onload = function() {
+body.onload = function () {
   // Print current date.
-  const moon = body.querySelector('header');
-  const currentEl = document.createElement('div');
-  currentEl.classList.add('current-date');
-  currentEl.innerText = `${format(new Date(), 'd MMM yyyy')}`;
+  const moon = body.querySelector("header");
+  const currentEl = document.createElement("div");
+  currentEl.classList.add("current-date");
+  currentEl.innerText = `${format(new Date(), "d MMM yyyy")}`;
   moon.append(currentEl);
 
   // Calculate moon phases.
-  const {currentPhase, newMoon, fullMoon} = calculateMoonPhases();
+  const { currentPhase, newMoon, fullMoon, nextFullMoon, nextNewMoon } =
+    calculateMoonPhases();
 
   // The phases have been calculated. Time to remove the loader.
-  body.querySelector('.loader').remove();
+  body.querySelector(".loader").remove();
 
   // Visualize the moon.
   visualizeMoonPhase(currentPhase);
 
   // Visualize the next dates.
-  const next = body.querySelector('.next-dates');
+  const nextDatesElement = body.querySelector(".next-dates");
 
-  const newMoonEl = document.createElement('div');
-  newMoonEl.classList.add('new-moon');
-  newMoonEl.innerHTML = `<div class="title">New Moon</div>
-    <div class="date">${format(newMoon, 'MMM, d - HH:mm')}</div>`;
-
-  const fullMoonEl = document.createElement('div');
-  fullMoonEl.classList.add('full-moon');
-  fullMoonEl.innerHTML = `<div class="title">Full Moon</div>
-    <div class="date">${format(fullMoon, 'MMM, d - HH:mm')}</div>`;
-
-  if (newMoon < fullMoon) {
-    next.append(newMoonEl);
-    next.append(fullMoonEl);
+  if (newMoon) {
+    nextDatesElement.append(renderDate("New Moon", newMoon));
   }
-  else {
-    next.append(fullMoonEl);
-    next.append(newMoonEl);
+  if (fullMoon) {
+    nextDatesElement.append(renderDate("Full Moon", fullMoon));
   }
-}
+  if (nextNewMoon) {
+    nextDatesElement.append(renderDate("Next New Moon", nextNewMoon));
+  }
+  if (nextFullMoon) {
+    nextDatesElement.append(renderDate("Next Full Moon", nextFullMoon));
+  }
+
+  // if (newMoon < fullMoon) {
+  //   nextDatesElement.append(newMoonEl);
+  //   nextDatesElement.append(fullMoonEl);
+  // }
+  // else {
+  //   nextDatesElement.append(fullMoonEl);
+  //   nextDatesElement.append(newMoonEl);
+  // }
+};
 
 // Service Worker for offline caching of production build.
 if (process.env.NODE_ENV === 'production') {
