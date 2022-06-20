@@ -1,9 +1,9 @@
-import format from 'date-fns/format';
-import calculateMoonPhases from './calculateMoonPhases';
-import './styles.css';
-import visualizeMoonPhase from './visualizeMoonPhase';
+import format from "date-fns/format";
+import calculateMoonPhases from "./calculateMoonPhases";
+import "./styles.css";
+import visualizeMoonPhase from "./visualizeMoonPhase";
 
-const body = document.querySelector('body');
+const body = document.querySelector("body");
 
 const renderDate = (title, date) => {
   const dateElement = document.createElement("div");
@@ -60,10 +60,10 @@ body.onload = function () {
 };
 
 // Service Worker for offline caching of production build.
-if (process.env.NODE_ENV === 'production') {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
+if (process.env.NODE_ENV === "production") {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js");
     });
   }
 }
