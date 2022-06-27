@@ -3,8 +3,6 @@ import calculateMoonPhases from "./calculateMoonPhases";
 import "./styles.css";
 import visualizeMoonPhase from "./visualizeMoonPhase";
 
-const body = document.querySelector("body");
-
 const renderDate = (title, date) => {
   const dateElement = document.createElement("div");
   dateElement.classList.add("moon-phase");
@@ -14,27 +12,40 @@ const renderDate = (title, date) => {
   return dateElement;
 };
 
-// When body is ready, we caclulate and visualize moon phases.
-body.onload = function () {
+function renderPage() {
+  const body = document.querySelector("body");
+
   // Print current date.
   const moon = body.querySelector("header");
-  const currentEl = document.createElement("div");
-  currentEl.classList.add("current-date");
+
+  let currentEl = moon.querySelector(".current-date");
+  if (currentEl == null) {
+    currentEl = document.createElement("div");
+    currentEl.classList.add("current-date");
+    moon.append(currentEl);
+  }
+
+  // @todo: Only update when changed.
   currentEl.innerText = `${format(new Date(), "d MMM yyyy")}`;
-  moon.append(currentEl);
 
   // Calculate moon phases.
   const { currentPhase, newMoon, fullMoon, nextFullMoon, nextNewMoon } =
     calculateMoonPhases();
 
   // The phases have been calculated. Time to remove the loader.
-  body.querySelector(".loader").remove();
+  const loader = body.querySelector(".loader");
+  if (loader) {
+    loader.remove();
+  }
 
   // Visualize the moon.
   visualizeMoonPhase(currentPhase);
 
   // Visualize the next dates.
   const nextDatesElement = body.querySelector(".next-dates");
+
+  // @todo: Only update when changed.
+  nextDatesElement.innerText = "";
 
   if (newMoon) {
     nextDatesElement.append(renderDate("New Moon", newMoon));
@@ -48,16 +59,22 @@ body.onload = function () {
   if (nextFullMoon) {
     nextDatesElement.append(renderDate("Next Full Moon", nextFullMoon));
   }
+}
 
-  // if (newMoon < fullMoon) {
-  //   nextDatesElement.append(newMoonEl);
-  //   nextDatesElement.append(fullMoonEl);
-  // }
-  // else {
-  //   nextDatesElement.append(fullMoonEl);
-  //   nextDatesElement.append(newMoonEl);
-  // }
-};
+// When body is ready, we caclulate and visualize moon phases.
+window.addEventListener("load", () => {
+  renderPage();
+
+  // Re-render page regularly.
+  setInterval(() => {
+    // Check whether the app has focus.
+    if (!window.document.hasFocus()) {
+      return;
+    }
+
+    renderPage();
+  }, 1 * 60 * 1000); // once a minute
+});
 
 // Service Worker for offline caching of production build.
 if (process.env.NODE_ENV === "production") {
