@@ -20,7 +20,7 @@ module.exports = {
       dry: isDevEnv()
     }),
     new HtmlWebpackPlugin({
-      title: 'Moon Peaks',
+      title: 'Ashtanga Yoga Holidays',
       template: 'template.html'
     }),
     new CopyPlugin({
