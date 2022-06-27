@@ -1,8 +1,8 @@
 {
-  "name": "moon-peaks",
+  "name": "ashtanga-holidays",
   "version": "1.0.0",
   "private": true,
-  "description": "An offline-ready app displaying next major moon phases.",
+  "description": "PWA app for tracking full and new Moon days which are considered holidays in Ashtanga Yoga tradition",
   "main": "dist/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
