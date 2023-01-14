@@ -18,6 +18,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     title: "Moon Peaks",
     template: "template.html",
+    publicPath: "",
   }),
   new CopyPlugin({
     patterns: [
@@ -44,6 +45,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: distDir,
+    publicPath: "",
   },
   module: {
     rules: [
