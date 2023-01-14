@@ -1,15 +1,15 @@
 const {merge} = require('webpack-merge');
 const common = require('./webpack.common.js');
 const { GenerateSW } = require('workbox-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require("terser-webpack-plugin");
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin()],
   },
   plugins: [
     new GenerateSW({
@@ -18,10 +18,10 @@ module.exports = merge(common, {
       skipWaiting: true,
     }),
     new WebpackPwaManifest({
-      name: "Ashtanga Yoga Holidays - Upcoming full and new Moon dates",
-      short_name: "Ashtanga Yoga Holidays",
+      name: "Moon Peaks - Upcoming full and new Moon dates",
+      short_name: "Moon Peaks",
       description:
-        "Displays next full and new moon dates and visualizes current moon phase.",
+        "Displays next full and new moon dates and visualizes current moon phase",
       background_color: "#193d61",
       theme_color: "#193d61",
       crossorigin: "use-credentials", //can be null, use-credentials or anonymous

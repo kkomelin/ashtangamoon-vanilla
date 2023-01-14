@@ -7,7 +7,9 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: distDir,
+    static: {
+      directory: distDir,
+    },
     compress: true,
     port: 9000
   }
