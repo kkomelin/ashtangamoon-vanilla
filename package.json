@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "serve": "serve ./dist"
+    "serve": "serve ./dist",
+    "prettier": "prettier --write ."
   },
   "keywords": [],
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
@@ -25,6 +26,7 @@
     "css-minimizer-webpack-plugin": "^4.2.2",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
+    "prettier": "^2.8.3",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
