@@ -1,7 +1,6 @@
 {
   "name": "moon-peaks",
   "version": "1.0.0",
-  "private": true,
   "description": "Displays next full and new moon dates and visualizes current moon phase",
   "main": "dist/index.html",
   "scripts": {
@@ -11,9 +10,13 @@
     "serve": "serve ./dist",
     "prettier": "prettier --write ."
   },
-  "keywords": [],
+  "keywords": [
+    "pwa",
+    "progressive web app",
+    "workbox"
+  ],
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
-  "license": "Proprietary",
+  "license": "MIT",
   "dependencies": {
     "d3": "^7.8.1",
     "date-fns": "^2.29.3",
