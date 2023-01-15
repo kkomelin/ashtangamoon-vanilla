@@ -12,7 +12,9 @@
   },
   "keywords": [
     "pwa",
-    "progressive web app",
+    "pwa-apps",
+    "progressive-web-app",
+    "progressive-web-apps",
     "workbox"
   ],
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
