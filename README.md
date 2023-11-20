@@ -1,8 +1,8 @@
-Moon Peaks
+Ashtanga Moon
 ====
 
-A simple PWA app with Workbox, D3 and Webpack which displays next full and new moon dates and visualizes current moon phase.
+A simple PWA app with Workbox, D3 and Webpack which allows to keep track of new and full moon days and visualizes current moon phase.
 
-Moon peak days are used in Ashtanga Yoga for taking rest and fasting.
+New and full moon days are used in Ashtanga Vinyasa Yoga for taking rest and fasting.
 
-[Demo](https://moon.komelin.com)
+[Check it out](https://ashtangamoon.org)
