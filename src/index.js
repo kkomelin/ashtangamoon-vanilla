@@ -19,11 +19,6 @@ function renderPage() {
   const moon = body.querySelector('header')
 
   let currentEl = moon.querySelector('.current-date')
-  if (currentEl == null) {
-    currentEl = document.createElement('div')
-    currentEl.classList.add('current-date')
-    moon.append(currentEl)
-  }
 
   // @todo: Only update when changed.
   currentEl.innerText = `${format(new Date(), 'd MMM yyyy')}`
@@ -66,14 +61,17 @@ window.addEventListener('load', () => {
   renderPage()
 
   // Re-render page regularly.
-  setInterval(() => {
-    // Check whether the app has focus.
-    if (!window.document.hasFocus()) {
-      return
-    }
+  setInterval(
+    () => {
+      // Check whether the app has focus.
+      if (!window.document.hasFocus()) {
+        return
+      }
 
-    renderPage()
-  }, 1 * 60 * 1000) // once a minute
+      renderPage()
+    },
+    1 * 60 * 1000
+  ) // once a minute
 })
 
 // Service Worker for offline caching of production build.

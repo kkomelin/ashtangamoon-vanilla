@@ -1,5 +1,4 @@
-Ashtanga Moon
-====
+# Ashtanga Moon
 
 A simple PWA app with Workbox, D3 and Webpack which allows to keep track of new and full moon days and visualizes current moon phase.
 
