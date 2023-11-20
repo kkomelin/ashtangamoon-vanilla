@@ -18,8 +18,8 @@ module.exports = merge(common, {
       skipWaiting: true,
     }),
     new WebpackPwaManifest({
-      name: 'Moon Peaks - Upcoming full and new Moon dates',
-      short_name: 'Moon Peaks',
+      name: 'Ashtanga Moon - Track new and full moon days',
+      short_name: 'Ashtanga Moon',
       description:
         'Displays next full and new moon dates and visualizes current moon phase',
       background_color: '#193d61',

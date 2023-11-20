@@ -16,7 +16,7 @@ const plugins = [
     dry: isDevEnv,
   }),
   new HtmlWebpackPlugin({
-    title: 'Moon Peaks',
+    title: 'Ashtanga Moon',
     template: 'template.html',
     publicPath: '',
   }),

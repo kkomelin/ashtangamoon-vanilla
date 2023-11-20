@@ -1,7 +1,7 @@
 {
-  "name": "moon-peaks",
+  "name": "ashtangamoon",
   "version": "1.0.0",
-  "description": "Displays next full and new moon dates and visualizes current moon phase",
+  "description": "Allows to keep track of new and full moon days and visualizes current moon phase",
   "main": "dist/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +15,9 @@
     "pwa-apps",
     "progressive-web-app",
     "progressive-web-apps",
-    "workbox"
+    "workbox",
+    "yoga",
+    "ashtanga-yoga"
   ],
   "author": "Konstantin Komelin <konstantin.komelin@gmail.com>",
   "license": "MIT",
