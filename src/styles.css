@@ -14,6 +14,16 @@
 .next-dates {
   color: #ffffff;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 500px) {
+  .next-dates {
+    flex-direction: row;
+    gap: 3rem;
+  }
 }
 
 .next-dates .moon-phase {
