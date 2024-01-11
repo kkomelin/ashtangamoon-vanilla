@@ -1,4 +1,4 @@
-# Ashtanga Moon
+# Ashtanga Moon (vanilla JS)
 
 **This vanilla JS project is superseded by [its Solid.js version](https://github.com/kkomelin/ashtangamoon-solid). Follow it for updates.**
 
